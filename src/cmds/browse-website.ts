@@ -1,13 +1,13 @@
 import { getWebsiteSummary } from '../prompt';
 import { useChatStore } from '../stores/chat';
 
-const PROXY = 'https://young-stream-68812.herokuapp.com'
+const PROXY = 'https://young-stream-68812.herokuapp.com';
 
 const fetchContent = async (url: string) => {
   const response = await fetch(`${PROXY}/${url}`);
   const html = await response.text();
   return html;
-}
+};
 
 const extractText = (html: string) => {
   const parser = new DOMParser();
@@ -21,7 +21,7 @@ const extractText = (html: string) => {
   const text = doc.body.textContent?.trim();
 
   return text ?? '';
-}
+};
 
 const extractLinks = (html: string) => {
   const parser = new DOMParser();
@@ -32,7 +32,7 @@ const extractLinks = (html: string) => {
     text: link.textContent?.trim(),
     link: link.getAttribute('href'),
   }));
-}
+};
 
 const splitText = (text: string, maxLength = 8192) => {
   const paragraphs = text.split('\n');
@@ -57,7 +57,7 @@ const splitText = (text: string, maxLength = 8192) => {
   }
 
   return result;
-}
+};
 
 const summaryText = async (text: string, question: string) => {
   const chatStore = useChatStore();
@@ -76,15 +76,15 @@ const summaryText = async (text: string, question: string) => {
       model: 'gpt-3.5-turbo',
       messages: [
         {
-          'role': 'user',
-          'content': getWebsiteSummary(chunk, question)
+          role: 'user',
+          content: getWebsiteSummary(chunk, question),
         },
       ],
       max_tokens: 300,
     });
 
     const summary = result.data.choices[0].message?.['content'];
-    console.log(`Summary of chunk ${index}: ${summary}`)
+    console.log(`Summary of chunk ${index}: ${summary}`);
     index++;
 
     summaries.push(summary);
@@ -94,15 +94,15 @@ const summaryText = async (text: string, question: string) => {
     model: 'gpt-3.5-turbo',
     messages: [
       {
-        'role': 'user',
-        'content': getWebsiteSummary(summaries.join('\n'), question)
+        role: 'user',
+        content: getWebsiteSummary(summaries.join('\n'), question),
       },
     ],
     max_tokens: 300,
   });
 
   return finalResult.data.choices[0].message?.['content'];
-}
+};
 
 /**
  * Browse specific website and return the summary content
@@ -118,8 +118,8 @@ export const browse = async (url: string, question: string) => {
   let result = `Website Content Summary:\n${summary}`;
 
   if (links.length) {
-    result += `Links:\n${links}`
+    result += `Links:\n${links}`;
   }
 
   return result;
-}
+};

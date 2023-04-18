@@ -1,3 +1,3 @@
 export const doNothing = () => {
-  return 'No action performed.'
-}
+  return 'No action performed.';
+};

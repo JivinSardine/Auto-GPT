@@ -33,4 +33,4 @@ export const exec = async ({ name, args }: Command) => {
     default:
       throw new Error(`Command ${name} not implemented`);
   }
-}
+};

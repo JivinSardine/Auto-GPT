@@ -3,7 +3,9 @@ import { useCredentialStore } from '../stores/credential';
 export const google = async (query: string) => {
   const credentialStore = useCredentialStore();
 
-  const endpoint = `https://www.googleapis.com/customsearch/v1?key=${credentialStore.google.key}&cx=${credentialStore.google.engine}&q=${encodeURIComponent(query)}`;
+  const endpoint = `https://www.googleapis.com/customsearch/v1?key=${
+    credentialStore.google.key
+  }&cx=${credentialStore.google.engine}&q=${encodeURIComponent(query)}`;
 
   try {
     const response = await fetch(endpoint);
@@ -14,9 +16,9 @@ export const google = async (query: string) => {
     }
   } catch (e) {
     if (e instanceof Error) {
-      throw new Error(`Command <google> failed: ${e.message}`)
+      throw new Error(`Command <google> failed: ${e.message}`);
     }
 
-    throw new Error('Command <google> failed due to unknown reason')
+    throw new Error('Command <google> failed due to unknown reason');
   }
-}
+};

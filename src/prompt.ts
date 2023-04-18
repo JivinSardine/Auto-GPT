@@ -46,7 +46,7 @@ RESPONSE FORMAT:
 }
 
 Ensure the response can be parsed by Javascript JSON.parse() function.
-`
+`;
 
 export const getWebsiteSummary = (content: string, question?: string) => {
   return `"""
@@ -55,4 +55,4 @@ ${content}
 
 Using the above text, please answer the following question: "${question}" -- if the question cannot be answered using the text, please summarize the text.
 `;
-}
+};

@@ -5,7 +5,7 @@ export interface Credentials {
   google: {
     key: string;
     engine: string;
-  }
+  };
 }
 
 export const useCredentialStore = defineStore('credential', {
@@ -14,14 +14,13 @@ export const useCredentialStore = defineStore('credential', {
     google: {
       key: '',
       engine: '',
-    }
+    },
   }),
   getters: {
     requireOpenAICredential(): boolean {
       return this.openai === '';
-    }
+    },
   },
-  actions: {
-  },
+  actions: {},
   persist: true,
 });

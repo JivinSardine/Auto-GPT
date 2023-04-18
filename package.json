@@ -4,7 +4,6 @@
   "description": "An Website allows GPT-4 to run autonomously",
   "productName": "AutoGPTWeb",
   "author": "Zhaofeng Miao <522856232@qq.com>",
-  "private": true,
   "scripts": {
     "lint": "eslint --ext .js,.ts,.vue ./",
     "format": "prettier --write \"**/*.{js,ts,vue,scss,html,md,json}\" --ignore-path .gitignore",
@@ -22,7 +21,8 @@
     "uuid": "^9.0.0",
     "vue": "^3.0.0",
     "vue-i18n": "^9.2.2",
-    "vue-router": "^4.0.0"
+    "vue-router": "^4.0.0",
+    "yarn": "^1.22.19"
   },
   "devDependencies": {
     "@intlify/vite-plugin-vue-i18n": "^3.3.1",
